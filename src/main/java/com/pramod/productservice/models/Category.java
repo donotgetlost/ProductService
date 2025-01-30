@@ -1,28 +1,21 @@
 package com.pramod.productservice.models;
 
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 
-public class Category {
-    private long id;
+@Getter
+@Setter
+@Entity
+public class Category extends BaseModel {
+
     private String description;
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+//    @OneToMany(mappedBy = "category") //without mappedby it will create an another table category_products //(fetch = FetchType.EAGER)
+//    private List<Product> products;
 }

@@ -50,4 +50,9 @@ public class ProductController {
     public Product replaceProduct(@PathVariable("id") long id, @RequestBody Product product) {
      return productService.replaceProductById(id, product);
     }
+
+    @PostMapping()
+    public Product addProduct(@RequestBody Product product) {
+      return productService.createProduct(product);
+    }
 }

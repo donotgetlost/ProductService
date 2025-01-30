@@ -34,6 +34,11 @@ public class FakeStoreProductServiceImpl implements ProductService {
         return convertFakeStoreDtoToProduct(fakeStoreProductDto);
     }
 
+    @Override
+    public Product updateProduct(Long id, Product product) {
+        return null;
+    }
+
     private Product convertFakeStoreDtoToProduct(FakeStoreProductDto fakeStoreProductDto) {
         Product product = new Product();
         product.setId(fakeStoreProductDto.getId());
@@ -81,5 +86,15 @@ public class FakeStoreProductServiceImpl implements ProductService {
             return convertFakeStoreDtoToProduct(response);
         }
         return null;
+    }
+
+    @Override
+    public Product createProduct(Product product) {
+        return null;
+    }
+
+    @Override
+    public void deleteProduct() {
+
     }
 }
