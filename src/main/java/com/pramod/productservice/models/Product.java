@@ -18,6 +18,8 @@ public class Product extends BaseModel {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn //naming foreign key if required
     private Category category;
+    private int quantity;
+    private String specialComments;
 }
 /*
 

@@ -1,5 +1,7 @@
 package com.pramod.productservice.controllers;
 
+import com.pramod.productservice.commons.AuthCommon;
+import com.pramod.productservice.dtos.UserDto;
 import com.pramod.productservice.exceptions.ProductNotFoundException;
 import com.pramod.productservice.models.Product;
 import com.pramod.productservice.services.ProductService;
@@ -16,12 +18,16 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
+    private AuthCommon authCommon;
 
-    ProductController(ProductService productService) {
+    ProductController(ProductService productService, AuthCommon authCommon) {
+
         this.productService = productService;
+        this.authCommon = authCommon;
     }
 
     @GetMapping("/{id}")
+    //removed this from param after oauth impl , @RequestHeader("authToken") String token
     public ResponseEntity<Product> getProductById(@PathVariable("id") long id) throws ProductNotFoundException {
       //  ResponseEntity<Product> response = null;
 //        try {
@@ -33,11 +39,27 @@ public class ProductController {
 //        return response;
        // return ResponseEntity.ok(productService.getProductById(id));
        // throw new RuntimeException();
+        ResponseEntity<Product> response;
+       // UserDto userDto = authCommon.validateToken(token);
+//        if(userDto == null) {
+//            response = new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+//            return response;
+//        }
+
+        //Role Based Access.
+//        for (Role role : userDto.getRoles()) {
+//            if (role.getValue().equals("ADMIN")) {
+//                //provide access.
+//            }
+//        }
+
+
         Product product = productService.getProductById(id);
 //        if(product == null) {
 //            throw new ProductNotFoundException()
 //        }
-            return new ResponseEntity<>(product, HttpStatus.OK);
+        response = new ResponseEntity<>(product, HttpStatus.OK);
+            return response;
 
     }
 
